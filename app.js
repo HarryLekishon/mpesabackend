@@ -6,7 +6,7 @@ const app = express();
 require("dotenv").config();
 const cors = require("cors");
 const axios = require("axios");
-const port = process.env.PORT 
+const port = process.env.PORT
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
@@ -151,23 +151,23 @@ app.post("/stk", access, async (req, res) => {
         ("0" + datenow.getMinutes()).slice(-2) +
         ("0" + datenow.getSeconds()).slice(-2)
 
-        const password = new Buffer.from('174379' + 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919' + timestamp).toString('base64')
+        const password = new Buffer.from('4101857' + '0970c2162df32b8ee5231dc01cf41fd66d98b54c98040f96dbedf98295f75690' + timestamp).toString('base64')
 
     await axios.post(
-        "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest",
+        "https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest",
         {
 
-            BusinessShortCode: "174379",
+            BusinessShortCode: "4101857",
             Password: password,
             Timestamp: timestamp,
             TransactionType: "CustomerPayBillOnline",
             Amount: amount,
             PartyA: `254${phone}`,
-            PartyB: "174379",
+            PartyB: "4101857",
             PhoneNumber: `254${phone}`,
             CallBackURL: "https://mydomain.com/pat",
-            AccountReference: "Test",
-            TransactionDesc: "Test"
+            AccountReference: "4101857",
+            TransactionDesc: "Donation"
         },
         {
             headers: {
@@ -289,8 +289,8 @@ app.post("/stk", access, async (req, res) => {
 
 function access(req, res, next) {
     // access token
-    let url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
-    let auth = new Buffer.from("i8NmQ4iG6xj13Gvn2T6l7cUq3RfCQVkX:twlhKrwcLUXsCorq").toString('base64');
+    let url = "https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+    let auth = new Buffer.from("RMt3A4HaAveovLbjMSbZwSwaOzR0QOIY:IZaw6FA0IAMGG6AG").toString('base64');
 
     request(
         {
@@ -315,8 +315,8 @@ function access(req, res, next) {
 
 function access_token() {
     // access token
-    let url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
-    let auth = new Buffer.from("i8NmQ4iG6xj13Gvn2T6l7cUq3RfCQVkX:twlhKrwcLUXsCorq").toString('base64');
+    let url = "https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+    let auth = new Buffer.from("RMt3A4HaAveovLbjMSbZwSwaOzR0QOIY:IZaw6FA0IAMGG6AG").toString('base64');
 
     request(
         {
